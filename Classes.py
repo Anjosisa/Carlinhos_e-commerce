@@ -1,7 +1,23 @@
+class E_commerce():
+    def __init__(self, nome, endereco, cnpj):
+        self.nome = nome
+        self.endereco = endereco
+        self.cnpj = cnpj
+        self.cliente = {}
+        self.reserva = {}
+
+    def cadastrarCliente(self, id, nome, cpf, tel):
+        self.id = id
+        self.nome = nome
+        self.cpf = cpf
+        self.tel = tel        
+        self.cliente[self.id] = [self.nome, self.cpf, self.tel]
+
+
 class Carrinho_Compra:
     lista_compras = []
 
-    def inserir_produto(self, produto):
+    def adicionar_carrinho(self, produto):
         self.produto = produto
         self.lista_compras.append(self.produto)
 
@@ -14,7 +30,7 @@ class Carrinho_Compra:
     def getLista(self, vetor):
         return self.lista_compras[vetor]
     
-    def delProduto(self, vetor):
+    def excluir_carrinho(self, vetor):
         self.vetor_lista = vetor-1
         return self.lista_compras.pop(vetor)
 
@@ -28,5 +44,6 @@ class Produtos:
     
     def getValor(self):
         return self.valor
+        
 
     
