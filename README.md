@@ -1,6 +1,7 @@
 # E-commerce
 
 TELA 1:
+- Cadastrar Usuário
 - Login
 - Cadastrar Produtos;
 - Listar Produtos;
