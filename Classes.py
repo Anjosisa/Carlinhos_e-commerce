@@ -4,17 +4,15 @@ class E_commerce():
         self.endereco = endereco
         self.cnpj = cnpj
         self.cliente = {}
-        self.reserva = {}
 
-    def cadastrarCliente(self, id, nome, cpf, tel):
+    def cadastrarCliente(self, id, nome, cpf, tel, senha):
         self.id = id
         self.nome = nome
         self.cpf = cpf
-        self.tel = tel        
-        self.cliente[self.id] = [self.nome, self.cpf, self.tel]
+        self.tel = tel
+        self.senha = senha      
+        self.cliente[self.id] = [self.nome, self.cpf, self.tel, self.senha]
 
-
-class Carrinho_Compra:
     lista_compras = []
 
     def adicionar_carrinho(self, produto):
@@ -44,6 +42,7 @@ class Produtos:
     
     def getValor(self):
         return self.valor
-        
-
     
+    def cadastrar_produtos(self,nome, valor):
+        self.nome = nome 
+        self.valor = valor 

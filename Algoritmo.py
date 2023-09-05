@@ -2,7 +2,6 @@ from Classes import *
 from Classes import E_commerce
 import os
 
-
 def main():
     contID = 0
     
@@ -14,7 +13,7 @@ def main():
     while sair == False:
         try:
             print("BEM-VINDO AO CARLINHOS-RALPH MOTOCAS!")
-            menu = int(input("[1] Cadastrar \n[2] Login \n[3] Sair \nDigite a opção desejada > "))
+            menu = int(input("[1] Cadastrar \n[2] Login \n[3] Sair \nDigite a opção desejada: "))
             
             match menu:
                 case 1:
@@ -25,33 +24,43 @@ def main():
                     nome = input("Nome: ")
                     cpf = int(input("CPF: "))
                     tel = int(input("Telefone: "))
+                    senha = input("Senha: ")
 
-                    CARLINHOS.cadastrarCliente(id, nome, cpf, tel)
+                    CARLINHOS.cadastrarCliente(id, nome, cpf, tel, senha)
 
                     print("Usuário cadastrado!")
                     os.system("pause")
+                    os.system("cls")
 
                 case 2:
                     os.system("cls")
                     print("--- LOGIN ---")
+                    cpf_login = int(input("Digite o CPF: "))
+                    senha_login = input("Digite a senha: ")
 
+                    # Verifique se o CPF existe nos clientes cadastrados
+                    if cpf_login in [cliente['cpf'] for cliente in CARLINHOS.cliente.values()]:
+                        cliente = CARLINHOS.cliente[cpf_login]
+                        if senha_login == cliente[3]:  # A senha está na posição 3 da lista de informações do cliente
+                            print("Login bem-sucedido!")
+                            # Aqui você pode prosseguir com o que desejar após o login
+                        else:
+                            print("Senha incorreta. Tente novamente.")
+                    else:
+                        print("CPF não encontrado. Verifique suas credenciais.")
+                    
+                    os.system("pause")
+                    os.system("cls")
                 case 3:
                     sair = True
 
                 case _:
-                    print("Valor Inválido!")            
+                    print("Valor Inválido!")   
+                             
         except Exception as erro:
             print("Opção inválida.")
             print("Erro: ", erro.__class__.__name__)
             print("")       
-
-
-    
-
-
-
-
-
 
 
 
