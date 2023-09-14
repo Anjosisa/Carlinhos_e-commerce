@@ -1,10 +1,10 @@
-from Classes import *
-from Classes import E_commerce
 import os
+from Classes import *
+
+carrinho = Carrinho()
 
 def main():
     contID = 0
-    
     sair = False
     os.system("cls")
     pdt = 0
@@ -15,7 +15,6 @@ def main():
         try:
             print("BEM-VINDO AO CARLINHOS-RALPH MOTOCAS!")
             menu = int(input("[1] Cadastrar \n[2] Login \n[3] Sair \nDigite a opção desejada: "))
-            
             match menu:
                 case 1:
                     os.system("cls")
@@ -28,7 +27,7 @@ def main():
                     tel = int(input("Telefone: "))
                     senha = input("Senha: ")
 
-                    Carlinhos.cadastrarCliente(id, nome, cpf, tel, senha)
+                    Carlinhos.cadastrar_cliente(id, nome, cpf, tel, senha)
 
                     print("Usuário cadastrado!")
                     os.system("pause")
@@ -39,14 +38,14 @@ def main():
                     print("--- LOGIN ---")
                     cpf_login = int(input("Digite o CPF: "))
                     senha_login = input("Digite a senha: ")
-                    
+
                     cliente_id = Carlinhos.login(cpf_login, senha_login)
                     if cliente_id is not None:
                         os.system("cls")
-                        print(f"Bem-vindo, {Carlinhos.cliente[cliente_id][0]}!\n")
+                        print(f"Bem-vindo, {Carlinhos.clientes[cliente_id].nome}!\n")
 
                         menu2 = int(input("\n[1] Cadastrar Produto \n[2] Listar Produtos \n[3] Comprar \n[4] Meu Carrinho \n[5] Excluir Produto do Carrinho \n \nDigite a opção desejada: "))
-                        
+
                         match menu2:
                             case 1:
                                 os.system("cls")
@@ -59,58 +58,56 @@ def main():
                                 precoPd = int(input("Preço: "))
                                 qtd = int(input("Quantidade: "))
 
-                                Carlinhos.cadastrar_produtos(num, nomePd, precoPd, qtd)
-                                
-                                print("Produto cadastrado")
+                                Carlinhos.cadastrar_produto(num, nomePd, precoPd, qtd)
+                                carrinho = carrinho(id)
+
+                                print("\nProduto cadastrado!")
+
                             case 2:
                                 os.system("cls")
                                 print("--- LISTA DE PRODUTOS ---")
-                                print("Produtos em estoque: ")
+                                print("Produtos em estoque: \n")
                                 Carlinhos.listar_produtos()
+
                             case 3:
                                 os.system("cls")
                                 print("--- COMPRAS ---")
                                 print("\nLista de Produtos Disponíveis:")
                                 Carlinhos.listar_produtos()
 
-                                if cliente_id is not None:
-                                    produto_id = int(input("\nDigite o número do produto que deseja comprar: "))
-                                    qtd = int(input("Selecione a quantidade que deseja comprar: "))
-                                    
-                                    if produto_id in Carlinhos.produto and Carlinhos.produto[produto_id][2] > 0:
-                                        Carlinhos.adicionar_carrinho(cliente_id, produto_id,qtd)
-                                        print("Produto adicionado ao carrinho!")
-                                    else:
-                                        print("Produto não encontrado ou não está disponível.")
-                                else:
-                                    print("CPF ou senha incorretos. Tente novamente.")
+                                produto_id = int(input("\nDigite o número do produto que deseja comprar: "))
+                                qtdp = int(input("Selecione a quantidade que deseja comprar: "))
+                                Carlinhos.adicionar_carrinho(cliente_id, produto_id, qtdp)
                                 
-                                os.system("pause")
-                                os.system("cls")
-                                
+                                print("\n Produto adicionado ao carrinho!")
+
                             case 4:
                                 os.system("cls")
                                 print("--- MEU CARRINHO ---")
                                 print("\nEsta é a lista de seus produtos!")
-                                Carlinhos.meu_carrinho()
+                                Carlinhos.meu_carrinho(cliente_id)
+
                             case 5:
                                 os.system("cls")
-                                print("--- EXCLUIR PRODUTO DO CARRINHO ---")
+                                print("--- EXCLUIR PRODUTO DO CARRINHO --- \n")
+                                Carlinhos.meu_carrinho(cliente_id)
+                                produto_id = int(input("\nDigite o número do produto que deseja excluir: "))
+
                             case _:
-                                print("Opção inválida.") 
+                                print("Opção inválida.")
                     else:
                         print("CPF ou senha incorretos. Tente novamente.")
-                    
+
                     os.system("pause")
-                    os.system("cls") 
-            
+                    os.system("cls")
+
                 case 3:
                     sair = True
 
                 case _:
-                    print("Valor Inválido!")   
-                             
+                    print("Valor Inválido!")
+
         except Exception as erro:
             print("Opção inválida.")
-            print("Erro: ", erro.__class__.__name__)
-            print("")       
+            print("Erro:", erro.__class__.__name__)
+
