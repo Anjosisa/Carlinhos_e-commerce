@@ -13,6 +13,8 @@ class Produto:
         self.precoPd = precoPd
         self.qtd = qtd
 
+class Carrinho:
+    pass
 
 class E_commerce:
     def __init__(self, nome, endereco, cnpj):
@@ -22,6 +24,7 @@ class E_commerce:
         self.clientes = {}
         self.produtos = {}
         self.carrinhos = {}
+        
 
     def cadastrar_cliente(self, id, nome, cpf, tel, senha):
         cliente = Cliente(id, nome, cpf, tel, senha)
@@ -42,6 +45,6 @@ class E_commerce:
             print(f"{num} - Nome: {produto.nomePd}, Valor: R${produto.precoPd}, Quantidade: {produto.qtd}")
 
     def adicionar_carrinho(self, cliente_id, produto_id, qtdp):
-        carrinho = Carrinho(cliente_id, produto_id, qtdp)
+        carrinho = Carrinho(cliente_id, produto_id, qtdp) 
         self.carrinho[id] = carrinho
-        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

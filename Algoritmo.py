@@ -1,7 +1,5 @@
 import os
-from Classes import *
-
-carrinho = Carrinho()
+from Classes import E_commerce
 
 def main():
     contID = 0
@@ -9,7 +7,7 @@ def main():
     os.system("cls")
     pdt = 0
 
-    Carlinhos = E_commerce("CARLINHOS-RALPH MOTOCAS", "Av. das Detonações, Nº86", 123456789)
+    Carlinhos = E_commerce("CARLINHOS-RALPH MOTOCAS", "Av. das Detonações, Nº828", 123456789)
 
     while sair == False:
         try:
@@ -89,7 +87,7 @@ def main():
 
                             case 5:
                                 os.system("cls")
-                                print("--- EXCLUIR PRODUTO DO CARRINHO --- \n")
+                                print("--- EXCLUIR PRODUTO DO CARRINHO ---")
                                 Carlinhos.meu_carrinho(cliente_id)
                                 produto_id = int(input("\nDigite o número do produto que deseja excluir: "))
 
