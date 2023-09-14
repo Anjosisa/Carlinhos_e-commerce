@@ -14,7 +14,7 @@ def main():
             print("BEM-VINDO AO CARLINHOS-RALPH MOTOCAS!")
             menu = int(input("[1] Cadastrar \n[2] Login \n[3] Sair \nDigite a opção desejada: "))
             match menu:
-                case 1:
+                case 1:# Case de Cadastro do Cliente
                     os.system("cls")
                     print("--- CADASTRO DE CLIENTE ---")
                     print("INFORME OS SEUS DADOS")
@@ -31,7 +31,7 @@ def main():
                     os.system("pause")
                     os.system("cls")
 
-                case 2:
+                case 2:# Case de Login do Cliente
                     os.system("cls")
                     print("--- LOGIN ---")
                     cpf_login = int(input("Digite o CPF: "))
@@ -41,11 +41,11 @@ def main():
                     if cliente_id is not None:
                         os.system("cls")
                         print(f"Bem-vindo, {Carlinhos.clientes[cliente_id].nome}!\n")
-
+                        #Menu
                         menu2 = int(input("\n[1] Cadastrar Produto \n[2] Listar Produtos \n[3] Comprar \n[4] Meu Carrinho \n[5] Excluir Produto do Carrinho \n \nDigite a opção desejada: "))
 
-                        match menu2:
-                            case 1:
+                        match menu2:# Match do Login
+                            case 1:# Case de Cadastrar Produtos
                                 os.system("cls")
                                 print("--- CADASTRAR PRODUTO ---")
                                 print("\nPreencha as informações: \n")
@@ -61,13 +61,13 @@ def main():
 
                                 print("\nProduto cadastrado!")
 
-                            case 2:
+                            case 2:# Case de Listar os produtos
                                 os.system("cls")
                                 print("--- LISTA DE PRODUTOS ---")
                                 print("Produtos em estoque: \n")
                                 Carlinhos.listar_produtos()
 
-                            case 3:
+                            case 3:  # Compras
                                 os.system("cls")
                                 print("--- COMPRAS ---")
                                 print("\nLista de Produtos Disponíveis:")
@@ -75,21 +75,26 @@ def main():
 
                                 produto_id = int(input("\nDigite o número do produto que deseja comprar: "))
                                 qtdp = int(input("Selecione a quantidade que deseja comprar: "))
-                                Carlinhos.adicionar_carrinho(cliente_id, produto_id, qtdp)
-                                
-                                print("\n Produto adicionado ao carrinho!")
 
-                            case 4:
+                                produto = Carlinhos.produtos.get(produto_id)
+                                if produto:
+                                    Carlinhos.adicionar_carrinho(cliente_id, produto, qtdp)
+                                    print("\nProduto adicionado ao carrinho!")
+                                else:
+                                    print("Produto não encontrado.")
+
+                            case 4:  # Meu Carrinho
                                 os.system("cls")
                                 print("--- MEU CARRINHO ---")
                                 print("\nEsta é a lista de seus produtos!")
                                 Carlinhos.meu_carrinho(cliente_id)
 
-                            case 5:
+                            case 5:  # Excluir produto do carrinho
                                 os.system("cls")
                                 print("--- EXCLUIR PRODUTO DO CARRINHO ---")
                                 Carlinhos.meu_carrinho(cliente_id)
-                                produto_id = int(input("\nDigite o número do produto que deseja excluir: "))
+                                produto_num = int(input("\nDigite o número do produto que deseja excluir: "))
+                                Carlinhos.remover_do_carrinho(cliente_id, produto_num)
 
                             case _:
                                 print("Opção inválida.")
@@ -108,4 +113,3 @@ def main():
         except Exception as erro:
             print("Opção inválida.")
             print("Erro:", erro.__class__.__name__)
-
