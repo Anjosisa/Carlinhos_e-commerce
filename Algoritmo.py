@@ -56,10 +56,10 @@ def main():
                                 num = pdt
 
                                 nomePd = input("Nome: ")
-                                precoPD = int(input("Preço: "))
-                                qnt = int(input("Quantidade: "))
+                                precoPd = int(input("Preço: "))
+                                qtd = int(input("Quantidade: "))
 
-                                Carlinhos.cadastrar_produtos(num, nomePd, precoPD, qnt)
+                                Carlinhos.cadastrar_produtos(num, nomePd, precoPd, qtd)
                                 
                                 print("Produto cadastrado")
                             case 2:
@@ -73,13 +73,12 @@ def main():
                                 print("\nLista de Produtos Disponíveis:")
                                 Carlinhos.listar_produtos()
 
-                                self.produto[x] = valor[2] - 1
-
                                 if cliente_id is not None:
-                                    produto_id = int(input("Digite o número do produto que deseja comprar: "))
+                                    produto_id = int(input("\nDigite o número do produto que deseja comprar: "))
+                                    qtd = int(input("Selecione a quantidade que deseja comprar: "))
                                     
                                     if produto_id in Carlinhos.produto and Carlinhos.produto[produto_id][2] > 0:
-                                        Carlinhos.adicionar_carrinho(cliente_id, produto_id)
+                                        Carlinhos.adicionar_carrinho(cliente_id, produto_id,qtd)
                                         print("Produto adicionado ao carrinho!")
                                     else:
                                         print("Produto não encontrado ou não está disponível.")
@@ -93,6 +92,7 @@ def main():
                                 os.system("cls")
                                 print("--- MEU CARRINHO ---")
                                 print("\nEsta é a lista de seus produtos!")
+                                Carlinhos.meu_carrinho()
                             case 5:
                                 os.system("cls")
                                 print("--- EXCLUIR PRODUTO DO CARRINHO ---")
@@ -114,27 +114,3 @@ def main():
             print("Opção inválida.")
             print("Erro: ", erro.__class__.__name__)
             print("")       
-
-
-
-# n1 = Produtos("Notebook", 4500)
-# n2 = Produtos("Iphone", 8000)
-# n3 = Produtos("Tablet", 2500)
-
-# Carrinho_Cliente = Carrinho_Compra()
-
-# Carrinho_Cliente.inserir_produto(n1)
-# Carrinho_Cliente.inserir_produto(n2) 
-# Carrinho_Cliente.inserir_produto(n3)
-
-# print("--------------------------------------")
-# print(Carrinho_Cliente.getLista(0).getNome())
-# print(Carrinho_Cliente.getLista(0).getValor())
-# print("--------------------------------------")
-
-# Carrinho_Cliente.listar_produtos()
-# print("--------------------------------------")
-
-# Carrinho_Cliente.delProduto(2)
-
-# Carrinho_Cliente.listar_produtos()

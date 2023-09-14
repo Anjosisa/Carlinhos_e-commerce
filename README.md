@@ -6,8 +6,8 @@ TELA 1:
 - Sair. OK
 
 TELA 2:
-- Cadastrar Produtos;
-- Listar Produtos;
+- Cadastrar Produtos; OK
+- Listar Produtos; OK
 - Comprar Produtos; 
-- Visualizar "Carrinho de compras". 
+- Visualizar "Carrinho de compras".  
 - Excluir Produtos do carrinho de compras.
