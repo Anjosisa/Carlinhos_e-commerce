@@ -16,6 +16,7 @@ class Produto:
 class Carrinho:
     def __init__(self):
         self.produtos = {}
+        valor_total = 0
 
     def adicionar_produto(self, produto, quantidade):
         # Adiciona os produtos no carrinho
