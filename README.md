@@ -8,6 +8,6 @@ TELA 1:
 TELA 2:
 - Cadastrar Produtos; OK
 - Listar Produtos; OK
-- Comprar Produtos; 
+- Comprar Produtos; OK
 - Visualizar "Carrinho de compras";  
 - Excluir Produtos do carrinho de compras;
