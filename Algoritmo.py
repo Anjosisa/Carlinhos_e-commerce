@@ -126,4 +126,3 @@ def main():
             print("Erro:", erro.__class__.__name__)
             os.system("pause")
             os.system("cls")
-
