@@ -5,19 +5,7 @@ class Cliente:
         self.cpf = cpf
         self.tel = tel
         self.senha = senha
-        
-    def get_nome(self):
-        return self._nome
 
-    def get_cpf(self):
-        return self._cpf
-
-    def get_tel(self):
-        return self._tel
-
-    def get_senha(self):
-        return self._senha
-        
 class Produto:
     def __init__(self, num, nomePd, precoPd, qtd):
         self.num = num
@@ -25,19 +13,23 @@ class Produto:
         self.precoPd = precoPd
         self.qtd = qtd
 
-    def get_nomePd(self):
-        return self._nomePd
-
-    def get_precoPd(self):
-        return self._precoPd
-
-    def get_qtd(self):
-        return self._qtd
-
 class Carrinho:
-    pass
+    def __init__(self):
+        self.produtos = {}
 
+    def adicionar_produto(self, produto, quantidade):
+        # Adiciona os produtos no carrinho
+        if produto.num in self.produtos:
+            self.produtos[produto.num] += quantidade
+        else:
+            self.produtos[produto.num] = quantidade
 
+    def remover_produto(self, produto, quantidade):
+        # Remove os produtos do carrinho
+        if produto.num in self.produtos:
+            self.produtos[produto.num] -= quantidade
+            if self.produtos[produto.num] <= 0:
+                del self.produtos[produto.num]
 
 class E_commerce:
     def __init__(self, nome, endereco, cnpj):
@@ -46,7 +38,8 @@ class E_commerce:
         self.cnpj = cnpj
         self.clientes = {}
         self.produtos = {}
-        
+        self.carrinhos = {}
+
     def cadastrar_cliente(self, id, nome, cpf, tel, senha):
         cliente = Cliente(id, nome, cpf, tel, senha)
         self.clientes[id] = cliente
@@ -61,12 +54,42 @@ class E_commerce:
         produto = Produto(num, nomePd, precoPd, qtd)
         self.produtos[num] = produto
 
-    def add_produto_carrinho(self, cliente_id):
-        pass
-        
-
     def listar_produtos(self):
         for num, produto in self.produtos.items():
             print(f"{num} - Nome: {produto.nomePd}, Valor: R${produto.precoPd}, Quantidade: {produto.qtd}")
 
+    def adicionar_produto_carrinho(self, cliente_id, produto_id, quantidade):
+        if cliente_id in self.carrinhos:
+            carrinho = self.carrinhos[cliente_id]
+            if produto_id in self.produtos:
+                produto = self.produtos[produto_id]
+                carrinho.adicionar_produto(produto, quantidade)
+            else:
+                print("Produto não encontrado.")
+        else:
+            print("Carrinho não encontrado.")
 
+    def remover_produto_carrinho(self, cliente_id, produto_id, quantidade):
+        if cliente_id in self.carrinhos:
+            carrinho = self.carrinhos[cliente_id]
+            if produto_id in self.produtos:
+                produto = self.produtos[produto_id]
+                carrinho.remover_produto(produto, quantidade)
+            else:
+                print("Produto não encontrado.")
+        else:
+            print("Carrinho não encontrado.")
+
+    def meu_carrinho(self, cliente_id):
+        if cliente_id in self.carrinhos:
+            carrinho = self.carrinhos[cliente_id]
+            print("Produtos no carrinho:")
+            for produto_num, quantidade in carrinho.produtos.items():
+                produto = self.produtos[produto_num]
+                print(f"Nome: {produto.nomePd}, Quantidade: {quantidade}")
+        else:
+            print("Carrinho não encontrado.")
+
+    def criar_carrinho(self, cliente_id):
+        # Cria um carrinho para o cliente
+        self.carrinhos[cliente_id] = Carrinho()
