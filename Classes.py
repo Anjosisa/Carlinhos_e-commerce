@@ -35,24 +35,7 @@ class Produto:
         return self._qtd
 
 class Carrinho:
-    def __init__(self):
-        self.produtos = {}
-
-    def adicionar_produto(self, produto, quantidade):
-        if produto.num not in self.produtos:
-            self.produtos[produto.num] = {'produto': produto, 'quantidade': quantidade}
-        else:
-            self.produtos[produto.num]['quantidade'] += quantidade
-
-    def remover_produto(self, produto_num):
-        if produto_num in self.produtos:
-            del self.produtos[produto_num]
-
-    def listar_produtos(self):
-        for num, info in self.produtos.items():
-            produto = info['produto']
-            quantidade = info['quantidade']
-            print(f"{num} - Nome: {produto.nomePd}, Valor: R${produto.precoPd}, Quantidade: {quantidade}")
+    pass
 
 
 
@@ -63,7 +46,6 @@ class E_commerce:
         self.cnpj = cnpj
         self.clientes = {}
         self.produtos = {}
-        self.carrinhos = {}
         
     def cadastrar_cliente(self, id, nome, cpf, tel, senha):
         cliente = Cliente(id, nome, cpf, tel, senha)
@@ -79,5 +61,14 @@ class E_commerce:
         produto = Produto(num, nomePd, precoPd, qtd)
         self.produtos[num] = produto
 
+    def add_produto_carrinho(self, cliente_id):
+        pass
+        
+
+    def listar_produtos(self):
+        for num, info in self.produtos.items():
+            produto = info['produto']
+            quantidade = info['quantidade']
+            print(f"{num} - Nome: {produto.nomePd}, Valor: R${produto.precoPd}, Quantidade: {quantidade}")
 
 

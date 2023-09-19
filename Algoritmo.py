@@ -1,5 +1,5 @@
 import os
-from Classes import E_commerce
+from Classes import*
 
 def main():
     contID = 0
@@ -57,7 +57,6 @@ def main():
                                 qtd = int(input("Quantidade: "))
 
                                 Carlinhos.cadastrar_produto(num, nomePd, precoPd, qtd)
-                                carrinho = carrinho(id)
 
                                 print("\nProduto cadastrado!")
 
@@ -76,12 +75,7 @@ def main():
                                 produto_id = int(input("\nDigite o número do produto que deseja comprar: "))
                                 qtdp = int(input("Selecione a quantidade que deseja comprar: "))
 
-                                produto = Carlinhos.produtos.get(produto_id)
-                                if produto:
-                                    Carlinhos.adicionar_carrinho(cliente_id, produto, qtdp)
-                                    print("\nProduto adicionado ao carrinho!")
-                                else:
-                                    print("Produto não encontrado.")
+                                produto = Carrinho(cliente_id, produto_id, qtdp)
 
                             case 4:  # Meu Carrinho
                                 os.system("cls")
