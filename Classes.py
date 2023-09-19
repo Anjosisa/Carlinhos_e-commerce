@@ -66,9 +66,7 @@ class E_commerce:
         
 
     def listar_produtos(self):
-        for num, info in self.produtos.items():
-            produto = info['produto']
-            quantidade = info['quantidade']
-            print(f"{num} - Nome: {produto.nomePd}, Valor: R${produto.precoPd}, Quantidade: {quantidade}")
+        for num, produto in self.produtos.items():
+            print(f"{num} - Nome: {produto.nomePd}, Valor: R${produto.precoPd}, Quantidade: {produto.qtd}")
 
 

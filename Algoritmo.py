@@ -88,7 +88,7 @@ def main():
                                 print("--- EXCLUIR PRODUTO DO CARRINHO ---")
                                 Carlinhos.meu_carrinho(cliente_id)
                                 produto_num = int(input("\nDigite o número do produto que deseja excluir: "))
-                                Carlinhos.remover_do_carrinho(cliente_id, produto_num)
+                                
 
                             case _:
                                 print("Opção inválida.")
